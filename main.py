@@ -1,1 +1,1 @@
-#iniciar o projeto
+#inicia o projeto
