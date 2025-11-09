@@ -2,10 +2,11 @@ FUNÇÕES PARA A TELA DE LOGIN
 
 -verificar se o usário existe no banco de dados retornando true ou false (botão entrar)
 -verificar se o nome dado pelo usario ja existe no banco de dados retornando true ou false (botão criar conta)
+-verificar se a senha é a senha do usuario informado retornando true ou false
 
 TELAS A FAZER
 
--tela de login
+-tela de login ✅
 -tela pra reserva d veiculo
 -tela do dashbord
 -tela do cadastro
