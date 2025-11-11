@@ -19,7 +19,7 @@ card.place(x=6,y=6)
 
 
 #caminho e tamanho da imagem
-fundo=ctk.CTkImage(Image.open("imagens/fundo.png"),
+fundo=ctk.CTkImage(Image.open("imagens/fundo_login.png"),
                    size=(524,589))
 
 #carregar a imagem

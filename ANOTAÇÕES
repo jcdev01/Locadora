@@ -4,14 +4,23 @@ FUNÇÕES PARA A TELA DE LOGIN
 -verificar se o nome dado pelo usario ja existe no banco de dados retornando true ou false (botão criar conta)
 -verificar se a senha é a senha do usuario informado retornando true ou false
 
+FUNÇÕES PARA A TELA DE CADASTRO
+
+-verificar se todos os campos foram prenchidos
+-verificar se o email e valido
+-verificar se o cpf é valido
+-verificar se o nome dado ja existe no banco de dados
+-salvar todas as informções do usuario no banco de dados
+
+
 TELAS A FAZER
 
 -tela de login ✅
--tela pra reserva d veiculo
+-tela pra reserva de veiculo
 -tela do dashbord
--tela do cadastro
+-tela do cadastro✅
 
-cada tela sera uma função para dps ser chamada no main.py
+cada tela sera uma função para dps ser chamada no main.py,mas isso so sera feito quando todas as telas estiverem prontas
 
 
 -BANCO DE DADOS
