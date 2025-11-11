@@ -48,7 +48,7 @@ entrada_usuario=ctk.CTkEntry(card,
                              border_color="",
                              fg_color="#202244")
 entrada_usuario.place(x=10,y=270)
-
+valor_entrada=entrada_usuario.get()
 
 #entrada para senha
 entrada_senha=ctk.CTkEntry(card,
@@ -82,9 +82,11 @@ butao_entrar=ctk.CTkButton(card,
                            height=35,
                            corner_radius=30,
                            border_color="",
-                           fg_color="#202244")
+                           fg_color="#202244",
+                           )
 butao_entrar.place(x=140,y=370)
 
 
 #inicia a tela
 tela_loguin.mainloop()
+
