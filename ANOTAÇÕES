@@ -1,8 +1,8 @@
 FUNÇÕES PARA A TELA DE LOGIN
 
--verificar se o usário existe no banco de dados retornando true ou false (botão entrar)
--verificar se o nome dado pelo usario ja existe no banco de dados retornando true ou false (botão criar conta)
--verificar se a senha é a senha do usuario informado retornando true ou false
+-verificar se o usário existe no banco de dados retornando true ou false (botão entrar)✅
+-verificar se o nome dado pelo usario ja existe no banco de dados retornando true ou false (botão criar conta)✅
+-verificar se a senha é a senha do usuario informado retornando true ou false✅
 
 FUNÇÕES PARA A TELA DE CADASTRO
 
@@ -10,12 +10,13 @@ FUNÇÕES PARA A TELA DE CADASTRO
 -verificar se o email e valido
 -verificar se o cpf é valido
 -verificar se o nome dado ja existe no banco de dados
--salvar todas as informções do usuario no banco de dados
+-salvar todas as informções do usuario no banco de dados✅
 
 
 TELAS A FAZER
 
--tela de login ✅
+
+-tela de login✅
 -tela pra reserva de veiculo
 -tela do dashbord
 -tela do cadastro✅
@@ -23,15 +24,7 @@ TELAS A FAZER
 cada tela sera uma função para dps ser chamada no main.py,mas isso so sera feito quando todas as telas estiverem prontas
 
 
-BANCO DE DADOS
+-BANCO DE DADOS
 
--salvar todas as informações do usuário(nome,senha,valor total gasto,total de alugueis,data do aluguel e data de devolução)✅
--funções para retornar os dados do usuários✅
+-funções para retornar os dados do usuários
 -carros disponiveis
-
-FUNÇÕES DO DASHBORD
-
--retornar todas as informações do usuário
--calcular o valor de cada aluquel(dias totais * valor da diaria do veiculo)
-
-

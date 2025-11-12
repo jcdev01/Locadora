@@ -1,92 +1,95 @@
 import customtkinter as ctk
 from PIL import Image
+from banco import login
+from tela_cadastro import criar_telacadastro
 
+# configurações da tela
+def criar_telalogin(app, mudar_tela):
+    frame1 = ctk.CTkFrame(app,fg_color="black")
 
-#configurações da tela
-tela_loguin=ctk.CTk()
-tela_loguin.title("Locadora")
-tela_loguin.geometry("800x600")
-tela_loguin.configure(fg_color="black")
-tela_loguin.resizable(False,False)
+    # card da tela
+    card = ctk.CTkFrame(frame1,
+                        corner_radius=15,
+                        fg_color="#3a3d7b",
+                        width=270,
+                        height=588)
+    card.place(x=6, y=6)
 
+    # imagem de fundo
+    fundo = ctk.CTkImage(Image.open("imagens/fundo_login.png"),
+                         size=(524, 589))
+    label_fundo = ctk.CTkLabel(frame1,
+                               image=fundo,
+                               text="")
+    label_fundo.place(x=290, y=6)
 
-#card da tela
-card=ctk.CTkFrame(tela_loguin,corner_radius=15,
-                  fg_color="#3a3d7b",
-                  width=270,
-                  height=588)
-card.place(x=6,y=6)
+    # textos
+    texto_titulo = ctk.CTkLabel(frame1, text="BEM VINDO!",
+                                text_color="white",
+                                font=("Archivo Black", 28, "bold"),
+                                fg_color="#3a3d7b")
+    texto_titulo.place(x=50, y=200)
 
+    texto_subtitulo = ctk.CTkLabel(card,
+                                   text="faça seu login para continuar",
+                                   text_color="white",
+                                   font=("verdana", 10, "bold"))
+    texto_subtitulo.place(x=55, y=228)
 
-#caminho e tamanho da imagem
-fundo=ctk.CTkImage(Image.open("imagens/fundo_login.png"),
-                   size=(524,589))
+    erro_label = ctk.CTkLabel(card,
+                              text="",
+                              text_color="red",
+                              bg_color="#3a3d7b",
+                              font=("Verdana", 10, "bold"))
+    erro_label.place(x=60, y=250)
 
-#carregar a imagem
-label_fundo=ctk.CTkLabel(tela_loguin,image=fundo,text="")
-label_fundo.place(x=290,y=6)
+    # entradas
+    entrada_login = ctk.CTkEntry(card,
+                                   placeholder_text="Login",
+                                   text_color="white",
+                                   width=250,
+                                   height=40,
+                                   corner_radius=30,
+                                   fg_color="#202244",
+                                   border_color="#202244")
+    entrada_login.place(x=10, y=270)
 
+    entrada_senha = ctk.CTkEntry(card,
+                                 placeholder_text="Senha",
+                                 text_color="white",
+                                 width=250,
+                                 height=40,
+                                 corner_radius=30,
+                                 fg_color="#202244",
+                                 border_color="#202244")
+    entrada_senha.place(x=10, y=320)
 
+    # botão criar conta → troca de tela
+    butao_criarconta = ctk.CTkButton(
+        card,
+        text="Criar conta",
+        width=120,
+        height=35,
+        corner_radius=30,
+        fg_color="#202244",
+        command=lambda: mudar_tela(criar_telacadastro)
+    )
+    butao_criarconta.place(x=10, y=370)
 
-#texto do titulo
-texto_titulo=ctk.CTkLabel(card,text="BEM VINDO! ",text_color="white",font=("Achirvo black",28,"bold"))
-texto_titulo.place(x=50,y=200)
+    # função de login
+    def tenta_login():
+        usuario = entrada_usuario.get()
+        senha = entrada_senha.get()
 
-#texto subtitulo
-texto_subtitulo=ctk.CTkLabel(card,text="faça seu login para continuar",text_color="white",font=("verdana",10,"bold"))
-texto_subtitulo.place(x=55,y=228)
+        if login(usuario, senha):
+            print("Login realizado com sucesso")
+        else:
+            erro_label.configure(text="Usuário ou senha incorretos", text_color="red")
 
+    # botão entrar
+    butao_entrar = ctk.CTkButton(card, text="Entrar", width=120, height=35,
+                                 corner_radius=30, fg_color="#202244", command=tenta_login,
+                                 )
+    butao_entrar.place(x=140, y=370)
 
-#entrada para usuário
-entrada_usuario=ctk.CTkEntry(card,
-                             placeholder_text="Usuario "
-                             ,text_color="white"
-                             ,width=250,
-                             height=40,
-                             corner_radius=30,
-                             border_width=2,
-                             border_color="",
-                             fg_color="#202244")
-entrada_usuario.place(x=10,y=270)
-valor_entrada=entrada_usuario.get()
-
-#entrada para senha
-entrada_senha=ctk.CTkEntry(card,
-                             placeholder_text="Senha"
-                             ,text_color="white"
-                             ,width=250,
-                             height=40,
-                             corner_radius=30,
-                             border_width=2,
-                             border_color="",
-                             fg_color="#202244")
-entrada_senha.place(x=10,y=320)
-
-
-#butão pra criar conta
-butao_criarconta=ctk.CTkButton(
-                    card,
-                    text="criar conta",
-                    width=120,
-                    height=35,
-                    corner_radius=30,
-                    border_color="",
-                    fg_color="#202244")
-butao_criarconta.place(x=10,y=370)
-
-
-#butão para entrar
-butao_entrar=ctk.CTkButton(card,
-                           text="entrar",
-                           width=120,
-                           height=35,
-                           corner_radius=30,
-                           border_color="",
-                           fg_color="#202244",
-                           )
-butao_entrar.place(x=140,y=370)
-
-
-#inicia a tela
-tela_loguin.mainloop()
-
+    return frame1

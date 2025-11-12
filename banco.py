@@ -39,12 +39,13 @@ def login(login, senha):
                     if usuario[0] == login:
                         if usuario[1] == senha:
                             print(f'Bem-vindo(a) {usuario[2]}!')
-                            return
+                            return True
                         else:
                             print('\033[31mSenha incorreta. \033[m')
-                            return
+                            return False
 
                 print('\033[31mUsuário não encontrado.\033[m')
+                return False
 
         except Exception as e:
             print(f'\033[31mTivemos um erro ao fazer login.\n'
