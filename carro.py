@@ -13,7 +13,3 @@ class Carro:
 
         Carro.total += 1
         Carro.disponiveisAgora += 1
-        print(f"Novo veículo cadastrado: \n"
-              f"    Marca: {marca}\n"
-              f"    Modelo/ano: {modelo} {ano}\n"
-              f"    Placa: {placa}")
