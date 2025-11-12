@@ -78,7 +78,7 @@ def criar_telalogin(app, mudar_tela):
 
     # função de login
     def tenta_login():
-        usuario = entrada_usuario.get()
+        usuario = entrada_login.get()
         senha = entrada_senha.get()
 
         if login(usuario, senha):
