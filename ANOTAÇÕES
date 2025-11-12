@@ -23,9 +23,15 @@ TELAS A FAZER
 cada tela sera uma função para dps ser chamada no main.py,mas isso so sera feito quando todas as telas estiverem prontas
 
 
--BANCO DE DADOS
+BANCO DE DADOS
 
 -salvar todas as informações do usuário(nome,senha,valor total gasto,total de alugueis,data do aluguel e data de devolução)
 -funções para retornar os dados do usuários
 -carros disponiveis
+
+FUNÇÕES DO DASHBORD
+
+-retornar todas as informações do usuário
+-calcular o valor de cada aluquel(dias totais * valor da diaria do veiculo)
+
 

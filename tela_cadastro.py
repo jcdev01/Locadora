@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from PIL import  Image
 
+from Locadora.banco import novoUsuario
 
 tela_cadastro=ctk.CTk()
 tela_cadastro.geometry("800x600")
@@ -100,6 +101,24 @@ entrada_senha_cadastro=ctk.CTkEntry(tela_cadastro,
                             bg_color="black")
 entrada_senha_cadastro.place(x=240,y=485)
 
+
+
+def criar_conta():
+        senha=entrada_senha_cadastro.get()
+        email=entrada_email.get()
+        nome=entrada_nome.get()
+        cpf=entrada_cpf.get()
+        numero=entrada_numero.get()
+        login=email
+        novoUsuario(senha,email,nome,cpf,numero,login)
+
+
+
+
+
+
+
+
 butao_criarconta=ctk.CTkButton(tela_cadastro,
                             text_color="white",
                             width=150,
@@ -110,8 +129,11 @@ butao_criarconta=ctk.CTkButton(tela_cadastro,
                             text="CRIAR CONTA",
                             font=("Monstserrat",10,"bold"),
                             fg_color="#3a3d7b",
-                            bg_color="black")
+                            bg_color="black",
+                            command=criar_conta)
 butao_criarconta.place(x=335,y=538)
+
+
 
 
 

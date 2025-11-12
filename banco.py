@@ -1,5 +1,9 @@
-#conexão com o banco de dados
+﻿#conexão com o banco de dados
 import sqlite3
+
+
+
+
 
 def iniciar():
     try:
@@ -17,7 +21,7 @@ def iniciar():
             )''')
             conexao.commit()
 
-        conexao.close()
+
 
         print('Banco de dados criado com sucesso.')
 
@@ -47,14 +51,14 @@ def login(login, senha):
                   f'{e}\033[m')
 
 
-def novoUsuario():
+def novoUsuario(senha,email,nome,cpf,telefone,login):
     usuario = {
-        'login': input('Login: '),
-        'senha': input('Senha: '),
-        'email': input('Email: '),
-        'nome': input('Nome: '),
-        'cpf': input('CPF: '),
-        'telefone': input('Telefone: '),
+        'senha': senha,
+        'email': email,
+        'nome': nome,
+        'cpf': cpf,
+        'telefone': telefone,
+        'login': login,
     }
 
     try:
@@ -72,7 +76,7 @@ def novoUsuario():
     except Exception as e:
         print(f'\033[31mErro ao cadastrar usuário. Tente novamente\n'
               f'{e}\033[m')
-        novoUsuario()
+
 
 def listar(tabela):
     try:
