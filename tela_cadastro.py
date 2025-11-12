@@ -2,7 +2,8 @@
 import customtkinter as ctk
 from PIL import  Image
 
-from Locadora.banco import novoUsuario
+import banco
+
 def criar_telacadastro(app,mudar_tela):
     frame2=ctk.CTkFrame(app)
 
@@ -102,20 +103,16 @@ def criar_telacadastro(app,mudar_tela):
 
 
     def criar_conta():
-            senha=entrada_senha_cadastro.get()
-            email=entrada_email.get()
-            nome=entrada_nome.get()
-            cpf=entrada_cpf.get()
-            numero=entrada_numero.get()
-            login=email
-            novoUsuario(senha,email,nome,cpf,numero,login)
+        usuario = {
+            "cpf":entrada_cpf.get(),
+            "senha":entrada_cpf.get(),
+            "email":entrada_email.get(),
+            "nome":entrada_nome.get(),
+            "telefone":entrada_numero.get()
+        }
 
-
-
-
-
-
-
+        banco.novoUsuario(usuario)
+        banco.listar('usuarios')
 
     butao_criarconta=ctk.CTkButton(frame2,
                                 text_color="white",
