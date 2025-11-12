@@ -9,11 +9,11 @@ def iniciar():
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS usuarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                cpf TEXT NOT NULL,
-                senha TEXT NOT NULL,
-                email TEXT NOT NULL,
-                nome TEXT NOT NULL,
-                telefone TEXT NOT NULL
+                cpf TEXT,
+                senha TEXT,
+                email TEXT,
+                nome TEXT,
+                telefone TEXT
             )''')
             conexao.commit()
 
