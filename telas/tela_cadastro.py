@@ -109,7 +109,7 @@ def criar_telacadastro(app,mudar_tela):
     def criar_conta():
         usuario = {
             "cpf":entrada_cpf.get(),
-            "senha":entrada_cpf.get(),
+            "senha":entrada_senha_cadastro,
             "email":entrada_email.get(),
             "nome":entrada_nome.get(),
             "telefone":entrada_numero.get()
