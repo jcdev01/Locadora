@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from telas.tela_login import criar_telalogin
 from telas.tela_cadastro import criar_telacadastro
+from telas.tela_aluguel import criar_telaaluguel
 
 # cria a janela principal
 app = ctk.CTk()

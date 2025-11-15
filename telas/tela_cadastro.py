@@ -2,8 +2,8 @@
 import customtkinter as ctk
 from PIL import  Image
 import os
-from Locadora import banco
-from Locadora.telas.tela_dashbord import criar_teladashbord
+import banco
+from telas.tela_dashboard import criar_teladashboard
 
 def criar_telacadastro(app,mudar_tela):
     frame2=ctk.CTkFrame(app)

@@ -1,9 +1,9 @@
 import customtkinter as ctk
 from PIL import Image
-from Locadora.banco import login
+from banco import login
 import os
-from Locadora.telas.tela_cadastro import criar_telacadastro
-from Locadora.telas.tela_dashbord import criar_teladashbord
+from telas.tela_cadastro import criar_telacadastro
+from telas.tela_dashboard import criar_teladashboard
 
 # configurações da tela
 def criar_telalogin(app, mudar_tela):
@@ -93,7 +93,7 @@ def criar_telalogin(app, mudar_tela):
 
         if login(usuario, senha):
             print("Login realizado com sucesso")
-            mudar_tela(criar_teladashbord)
+            mudar_tela(criar_teladashboard)
         else:
             erro_label.configure(text="Usuário ou senha incorretos", text_color="red")
 
