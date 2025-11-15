@@ -3,7 +3,7 @@ import customtkinter as ctk
 from PIL import  Image
 import os
 import banco
-from telas.tela_dashboard import criar_teladashboard
+from telas.tela_dashboard import criar_teladashbord
 
 def criar_telacadastro(app,mudar_tela):
     frame2=ctk.CTkFrame(app)
