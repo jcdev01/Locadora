@@ -3,7 +3,7 @@ import customtkinter as ctk
 from PIL import  Image
 import os
 import banco
-from telas.tela_dashboard import criar_teladashbord
+from telas.tela_dashboard import criar_teladashboard
 
 def criar_telacadastro(app,mudar_tela):
     frame2=ctk.CTkFrame(app)
@@ -117,7 +117,7 @@ def criar_telacadastro(app,mudar_tela):
 
         banco.novoUsuario(usuario)
         banco.listar('usuarios')
-        mudar_tela(criar_teladashbord)
+        mudar_tela(criar_teladashboard)
 
     butao_criarconta=ctk.CTkButton(frame2,
                                 text_color="white",

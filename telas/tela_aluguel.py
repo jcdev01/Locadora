@@ -36,7 +36,7 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
     titulo_retirada = ctk.CTkLabel(
         frame, text="Retirada",
         text_color="white",
-        font=("Montserrat", 18, "italic"),
+        font=("Montserrat", 18, "italic", "bold"),
         bg_color="#3a3d7b"
     )
     titulo_retirada.place(x=50, y=base_y)
@@ -45,13 +45,13 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         frame, width= 200,
         placeholder_text= "Data (DD/MM/AAAA)"
     )
-    data_retirada.place(x=50, y=base_y + 40)
+    data_retirada.place(x=50, y=base_y + 30)
 
     # Devolução
     titulo_devolucao = ctk.CTkLabel(
         frame, text= "Devolução",
         text_color= "white",
-        font=("Montserrat", 18, "italic"),
+        font=("Montserrat", 18, "italic", "bold"),
         bg_color= "#3a3d7b"
     )
     titulo_devolucao.place(x=50, y=base_y + 110)
@@ -60,17 +60,17 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         frame, width=200,
         placeholder_text="Data (DD/MM/AAAA)"
     )
-    data_devolucao.place(x=50, y=base_y + 150)
+    data_devolucao.place(x=50, y=base_y + 140)
 
     # Valor total
     titulo_valor = ctk.CTkLabel(
         frame,
         text="Cálculo do valor total:",
         text_color="white",
-        font=("Montserrat", 18, "italic"),
+        font=("Montserrat", 18, "italic", "bold"),
         bg_color="#3a3d7b"
     )
-    titulo_valor.place(x=50, y=base_y + 250)
+    titulo_valor.place(x=50, y=base_y + 230)
 
     valor_label = ctk.CTkLabel(
         frame,
@@ -79,14 +79,14 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         font=("Montserrat", 16, "bold"),
         bg_color="#3a3d7b"
     )
-    valor_label.place(x=300, y=base_y + 250)
+    valor_label.place(x=260, y=base_y + 230)
 
-    # Pagamento
+    # forma de pagamento
     titulo_pagamento = ctk.CTkLabel(
         frame,
         text="Forma de pagamento:",
         text_color="white",
-        font=("Montserrat", 18, "italic"),
+        font=("Montserrat", 18, "italic", "bold"),
         bg_color="#3a3d7b"
     )
     titulo_pagamento.place(x=50, y=base_y + 300)
@@ -96,7 +96,7 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         values=["Crédito", "Débito", "Pix", "Dinheiro"],
         width=200
     )
-    pagamento_combo.place(x=50, y=base_y + 350)
+    pagamento_combo.place(x=50, y=base_y + 340)
 
     # Gerar contrato
     def gerar_contrato():
@@ -109,11 +109,12 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         frame,
         text = "GERAR CONTRATO",
         fg_color = "#202244",
+        bg_color="#3a3d7b",  
         width = 180,
         height = 40,
         corner_radius = 20,
         command = gerar_contrato
     )
-    botao_contrato.place(x = 270, y = base_y + 350)
+    botao_contrato.place(x = 280, y = base_y + 330)
 
     return frame
