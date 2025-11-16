@@ -5,7 +5,7 @@ import os
 
 def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
 
-    frame = ctk.CTkFrame(app, fg_color="black")
+    frame = ctk.CTkFrame(app, fg_color="#3a3d7b")
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     img_path = os.path.join(BASE_DIR, "..", "imagens", "fundo_aluguel.png")
@@ -26,7 +26,7 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         height= 32,
         corner_radius= 20,
         command= voltar,
-        bg_color= "transparent"
+        bg_color= "black"
     )
     botao_voltar.place(x=680, y=20)
 
@@ -42,8 +42,13 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
     titulo_retirada.place(x=50, y=base_y)
 
     data_retirada = ctk.CTkEntry(
-        frame, width= 200,
-        placeholder_text= "Data (DD/MM/AAAA)"
+        frame,
+        width= 200,
+        placeholder_text= "Data (DD/MM/AAAA)",
+        text_color="black",
+        fg_color="white",
+        corner_radius=30,
+        border_color="#3a3d7b"
     )
     data_retirada.place(x=50, y=base_y + 30)
 
@@ -53,12 +58,17 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         text_color= "white",
         font=("Montserrat", 18, "italic", "bold"),
         bg_color= "#3a3d7b"
+
     )
     titulo_devolucao.place(x=50, y=base_y + 110)
 
     data_devolucao = ctk.CTkEntry(
         frame, width=200,
-        placeholder_text="Data (DD/MM/AAAA)"
+        placeholder_text="Data (DD/MM/AAAA)",
+        text_color="black",
+        fg_color="white",
+        corner_radius=30,
+        border_color="#3a3d7b"
     )
     data_devolucao.place(x=50, y=base_y + 140)
 
@@ -96,7 +106,11 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
     pagamento_combo = ctk.CTkComboBox(
         frame,
         values=["Crédito", "Débito", "Pix", "Dinheiro"],
-        width=200
+        width=200,
+        fg_color="white",
+        corner_radius=30,
+        border_color="#3a3d7b",
+        text_color="black"
     )
     pagamento_combo.place(x=50, y=base_y + 340)
 
