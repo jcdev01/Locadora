@@ -2,8 +2,9 @@
 import customtkinter as ctk
 from PIL import Image
 import os
+from Locadora.telas.tela_dashboard import criar_teladashboard
 
-def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
+def criar_telaaluguel(app, mudar_tela,):
 
     frame = ctk.CTkFrame(app, fg_color="#3a3d7b")
 
@@ -15,8 +16,8 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
     fundo_label.place(x=0, y=0)
 
     def voltar():
-        if tela_voltar is not None:
-            mudar_tela(tela_voltar)
+        mudar_tela(criar_teladashboard)
+
 
     botao_voltar = ctk.CTkButton(
         frame,
@@ -120,6 +121,7 @@ def criar_telaaluguel(app, mudar_tela, tela_voltar=None):
         print("Retirada:", data_retirada.get())
         print("Devolução:", data_devolucao.get())
         print("Pagamento:", pagamento_combo.get())
+        mudar_tela(criar_teladashboard)
 
     botao_contrato = ctk.CTkButton(
         frame,
