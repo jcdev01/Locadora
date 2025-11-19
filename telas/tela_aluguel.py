@@ -122,7 +122,7 @@ def criar_telaaluguel(app, mudar_tela,):
         print("Retirada:", data_retirada.get())
         print("Devolução:", data_devolucao.get())
         print("Pagamento:", pagamento_combo.get())
-        mudar_tela(criar_teladashboard)
+
 
     botao_contrato = ctk.CTkButton(
         frame,
