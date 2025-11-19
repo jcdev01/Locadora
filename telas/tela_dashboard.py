@@ -107,7 +107,7 @@ def criar_teladashboard(app,mudar_tela):
     botao_reservars.place(x=40,y=433)
 
     label_titulo = ctk.CTkLabel(frame4,
-                                text="CONCHEÇA NOSSA FROTA",
+                                text="CONHEÇA NOSSA FROTA",
                                 text_color="white",
                                 font=("Poppins", 30, "bold"))
 
