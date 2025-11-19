@@ -2,6 +2,7 @@ import customtkinter as ctk
 from Locadora.telas.tela_login import criar_telalogin
 
 
+
 # cria a janela principal
 app = ctk.CTk()
 app.geometry("800x600")

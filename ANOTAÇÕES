@@ -13,12 +13,18 @@ FUNÇÕES PARA A TELA DE CADASTRO
 -salvar todas as informções do usuario no banco de dados✅
 
 
+
+FUNÇÕES PARA A TELA DO ALUGUEL
+
+-salvar os contratos
+-fazer o calculo para a aluguel daquele carro(dias*diaria do carro)
+
 TELAS A FAZER
 
 
 -tela de login✅
--tela pra reserva de veiculo
--tela do dashbord
+-tela pra reserva de veiculo✅
+-tela do dashbord✅
 -tela do cadastro✅
 
 cada tela sera uma função para dps ser chamada no main.py,mas isso so sera feito quando todas as telas estiverem prontas
