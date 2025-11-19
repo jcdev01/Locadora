@@ -2,7 +2,7 @@
 import customtkinter as ctk
 from PIL import Image
 import os
-from tela_dashboard import criar_teladashboard
+
 
 def criar_telaaluguel(app, mudar_tela,):
 
@@ -16,6 +16,7 @@ def criar_telaaluguel(app, mudar_tela,):
     fundo_label.place(x=0, y=0)
 
     def voltar():
+        from Locadora.telas.tela_dashboard import criar_teladashboard
         mudar_tela(criar_teladashboard)
 
 
