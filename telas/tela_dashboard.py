@@ -27,7 +27,8 @@ def criar_teladashboard(app,mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar
+                             command=alugar,
+                             bg_color="#3a3d7b",
                              )
 
     botao_onix.place(x=225,y=90)
@@ -41,7 +42,8 @@ def criar_teladashboard(app,mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar)
+                             command=alugar,
+                             bg_color="#3a3d7b")
 
     botao_onix_sedan.place(x=225,y=240)
 
@@ -54,7 +56,8 @@ def criar_teladashboard(app,mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar)
+                             command=alugar,
+                             bg_color="#3a3d7b")
 
     botao_mobi.place(x=225,y=390)
 
@@ -67,7 +70,8 @@ def criar_teladashboard(app,mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar
+                             command=alugar,
+                             bg_color="#3a3d7b"
                              )
     botao_kwid.place(x=490,y=85)
 
@@ -80,8 +84,9 @@ def criar_teladashboard(app,mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                              command=alugar
-                             )
+                             command=alugar,
+                             bg_color="#3a3d7b",
+                                )
     botao_civic.place(x=490,y=240)
 
 
@@ -93,6 +98,7 @@ def criar_teladashboard(app,mudar_tela):
                                 height=25,
                                 border_color="",
                                 corner_radius=20,
+                                bg_color="#3a3d7b",
                                 command=alugar
                              )
     botao_tracker.place(x=490,y=390)
@@ -102,7 +108,13 @@ def criar_teladashboard(app,mudar_tela):
 
 
 
-    botao_reservars=ctk.CTkButton(frame4,text="ver minhas reservas",height=30,width=135,fg_color="#3a3d7b",
+    botao_reservars=ctk.CTkButton(frame4,
+                                  text="ver minhas reservas",
+                                  height=30,
+                                  width=135,
+                                  fg_color="#3a3d7b",
+                                  bg_color="#4b4f9d",
+                                  corner_radius=50
                                   )
     botao_reservars.place(x=40,y=433)
 
