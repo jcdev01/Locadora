@@ -1,7 +1,7 @@
 import sqlite3
 
 # abre o banco
-conexao = sqlite3.connect("database.db")
+conexao = sqlite3.connect("telas/back/database.db")
 cursor = conexao.cursor()
 
 # mostra as tabelas existentes

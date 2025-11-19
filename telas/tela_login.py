@@ -1,9 +1,9 @@
 import customtkinter as ctk
 from PIL import Image
-from Locadora.banco import login
+from back.banco import login
 import os
-from Locadora.telas.tela_cadastro import criar_telacadastro
-from Locadora.telas.tela_dashboard import criar_teladashboard
+from tela_cadastro import criar_telacadastro
+from tela_dashboard import criar_teladashboard
 
 # configurações da tela
 def criar_telalogin(app, mudar_tela):

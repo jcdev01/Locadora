@@ -2,7 +2,7 @@
 import customtkinter as ctk
 from PIL import Image
 import os
-from Locadora.telas.tela_dashboard import criar_teladashboard
+from tela_dashboard import criar_teladashboard
 
 def criar_telaaluguel(app, mudar_tela,):
 
