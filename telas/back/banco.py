@@ -4,8 +4,10 @@ from tkinter import messagebox
 
 def iniciar():
     try:
-        with (sqlite3.connect("database.db")) as conexao:
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
+
+                # CRIAÇÃO DAS TABELAS
             cursor.execute('''
             CREATE TABLE IF NOT EXISTS usuarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +16,14 @@ def iniciar():
                 email TEXT,
                 nome TEXT,
                 telefone TEXT
+            )''')
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS contratos (
+                num INTEGER PRIMARY KEY AUTOINCREMENT,
+                cpf TEXT,
+                placa TEXT,
+                dataInicio DATE,
+                dataTermino DATE
             )''')
             conexao.commit()
 
@@ -25,7 +35,7 @@ def iniciar():
 
 def login(login, senha):
         try:
-            with (sqlite3.connect("database.db")) as conexao:
+            with (sqlite3.connect("telas/back/database.db")) as conexao:
                 cursor = conexao.cursor()
                 cursor.execute('''SELECT cpf, senha, nome FROM usuarios''')
 
@@ -46,11 +56,12 @@ def login(login, senha):
         except Exception as e:
             messagebox.showerror('Erro', f'Tivemos um erro ao fazer login.\n'
                                          f'{e}')
+            return None
 
 
 def novoUsuario(usuario):
     try:
-        with (sqlite3.connect("database.db")) as conexao:
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''INSERT INTO usuarios (cpf, senha, email, nome, telefone)
             VALUES (:cpf, :senha, :email, :nome, :telefone)
@@ -68,7 +79,7 @@ def novoUsuario(usuario):
 
 def listar(tabela):
     try:
-        with (sqlite3.connect("database.db")) as conexao:
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
             cursor.execute(f'''SELECT * FROM {tabela}''')
             for linha in cursor.fetchall():
@@ -80,3 +91,4 @@ def listar(tabela):
               f'{e}\033[m')
 
 iniciar()
+listar('usuarios')
