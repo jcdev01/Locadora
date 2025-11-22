@@ -18,6 +18,12 @@ def criar_telacadastro(app,mudar_tela):
     texto_nome=ctk.CTkLabel(frame2,text="NOME COMPLETO",bg_color="black",text_color="white",font=("Montserrat",12,"bold"))
     texto_nome.place(x=250,y=50)
 
+
+    erro_label=ctk.CTkLabel(frame2,text="",text_color="red",bg_color="black")
+    erro_label.place(x=15,y=500)
+
+
+
     entrada_nome=ctk.CTkEntry(frame2,
                                 text_color="white",
                                 width=341,
@@ -26,7 +32,7 @@ def criar_telacadastro(app,mudar_tela):
                                 border_width=2,
                                 border_color="",
                                 fg_color="#3a3d7b",
-                                bg_color="black")
+                                bg_color="black",)
 
     entrada_nome.place(x=240,y=85)
 
@@ -34,7 +40,8 @@ def criar_telacadastro(app,mudar_tela):
                               text="NÚMERO",
                               bg_color="black",
                               text_color="white",
-                              font=("Monstserrat",12,"bold"))
+                              font=("Monstserrat",12,"bold"),
+                              )
     texto_numero.place(x=250,y=150)
 
     entrada_numero=ctk.CTkEntry(frame2,
@@ -45,7 +52,8 @@ def criar_telacadastro(app,mudar_tela):
                                 border_width=2,
                                 border_color="",
                                 fg_color="#3a3d7b",
-                                bg_color="black")
+                                bg_color="black",
+                                placeholder_text="00 123456789")
     entrada_numero.place(x=240,y=185)
 
     texto_email=ctk.CTkLabel(frame2,
@@ -63,7 +71,8 @@ def criar_telacadastro(app,mudar_tela):
                                 border_width=2,
                                 border_color="",
                                 fg_color="#3a3d7b",
-                                bg_color="black")
+                                bg_color="black",
+                                placeholder_text="nome@gmail.com")
     entrada_email.place(x=240,y=285)
 
     texto_cpf=ctk.CTkLabel(frame2,
@@ -82,7 +91,8 @@ def criar_telacadastro(app,mudar_tela):
                                 border_width=2,
                                 border_color="",
                                 fg_color="#3a3d7b",
-                                bg_color="black")
+                                bg_color="black",
+                                placeholder_text="123.456.789-00")
 
     entrada_cpf.place(x=240,y=385)
 
@@ -107,17 +117,26 @@ def criar_telacadastro(app,mudar_tela):
 
 
     def criar_conta():
-        usuario = {
-            "cpf":entrada_cpf.get(),
-            "senha":entrada_senha_cadastro.get(),
-            "email":entrada_email.get(),
-            "nome":entrada_nome.get(),
-            "telefone":entrada_numero.get()
-        }
+        nome=entrada_nome.get()
+        senha=entrada_senha_cadastro.get()
+        email=entrada_email.get()
+        numero=entrada_numero.get()
+        cpf=entrada_cpf.get()
+        if not nome or not entrada_cpf or not numero or not senha or not email or not cpf:
+            erro_label.configure(text_color="red",font=("Verdana",10,"bold"),text="preencha todos os campos corretamente ")
+            return
+        else:
+            usuario = {
+                "cpf":entrada_cpf.get(),
+                "senha":entrada_senha_cadastro.get(),
+                "email":entrada_email.get(),
+                "nome":entrada_nome.get(),
+                "telefone":entrada_numero.get()
+            }
 
-        banco.novoUsuario(usuario)
-        banco.listar('usuarios')
-        mudar_tela(criar_teladashboard)
+            banco.novoUsuario(usuario)
+            banco.listar('usuarios')
+            mudar_tela(criar_teladashboard)
 
     butao_criarconta=ctk.CTkButton(frame2,
                                 text_color="white",

@@ -15,6 +15,13 @@ def criar_telaaluguel(app, mudar_tela,):
     fundo_label = ctk.CTkLabel(frame, image=fundo, text="")
     fundo_label.place(x=0, y=0)
 
+
+
+    erro_label=ctk.CTkLabel(frame,text="",text_color="red",font=("Verdana",10,"bold"))
+    erro_label.place(x=100,y=100)
+
+
+
     def voltar():
         from Locadora.telas.tela_dashboard import criar_teladashboard
         mudar_tela(criar_teladashboard)
@@ -118,11 +125,17 @@ def criar_telaaluguel(app, mudar_tela,):
 
     # Gerar contrato
     def gerar_contrato():
-        print("=== CONTRATO GERADO ===")
-        print("Retirada:", data_retirada.get())
-        print("Devolução:", data_devolucao.get())
-        print("Pagamento:", pagamento_combo.get())
 
+        data_r=data_retirada.get()
+        data_d=data_devolucao.get()
+
+        if not data_r or not data_d:
+            erro_label.configure(text="informe a data de retirada e devolução")
+        else:
+            print("=== CONTRATO GERADO ===")
+            print("Retirada:", data_retirada.get())
+            print("Devolução:", data_devolucao.get())
+            print("Pagamento:", pagamento_combo.get())
 
     botao_contrato = ctk.CTkButton(
         frame,
@@ -135,5 +148,7 @@ def criar_telaaluguel(app, mudar_tela,):
         command = gerar_contrato
     )
     botao_contrato.place(x = 280, y = base_y + 330)
+
+
 
     return frame
