@@ -89,6 +89,13 @@ def listar(tabela):
 
         print(f'\033[31mErro ao listar {tabela}.'
               f'{e}\033[m')
+        
+def cpf_existe(cpf):
+    with sqlite3.connect("telas/back/database.db") as conexao:
+        cursor = conexao.cursor()
+        cursor.execute("SELECT 1 FROM usuarios WHERE cpf = ?", (cpf,))
+        resultado = cursor.fetchone()
+        return resultado is not None
 
 iniciar()
 listar('usuarios')

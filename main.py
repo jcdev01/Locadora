@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from Locadora.telas.tela_login import criar_telalogin
+from telas.tela_login import criar_telalogin
 
 
 

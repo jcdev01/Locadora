@@ -2,8 +2,9 @@
 import customtkinter as ctk
 from PIL import  Image
 import os
-from Locadora.telas.back import banco
-from Locadora.telas.tela_dashboard import criar_teladashboard
+from telas.back import banco
+from telas.tela_dashboard import criar_teladashboard
+from telas.back.banco import cpf_existe
 
 def criar_telacadastro(app,mudar_tela):
     frame2=ctk.CTkFrame(app)
@@ -122,9 +123,18 @@ def criar_telacadastro(app,mudar_tela):
         email=entrada_email.get()
         numero=entrada_numero.get()
         cpf=entrada_cpf.get()
+
         if not nome or not entrada_cpf or not numero or not senha or not email or not cpf:
             erro_label.configure(text_color="red",font=("Verdana",10,"bold"),text="preencha todos os campos corretamente ")
             return
+        
+        elif cpf_existe(cpf):
+            erro_label.configure(
+                text_color="red",
+                font=("Verdana", 10, "bold"),
+            )
+            return
+
         else:
             usuario = {
                 "cpf":entrada_cpf.get(),
