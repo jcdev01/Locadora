@@ -5,8 +5,46 @@ import os
 from telas.back import banco
 from telas.tela_dashboard import criar_teladashboard
 from telas.back.banco import cpf_existe
+import re
 
 def criar_telacadastro(app,mudar_tela):
+    def apenas_numero(valor):
+        # Permite apenas numero
+        return valor.isdigit() or valor == ""
+   
+    def formatar_cpf(valor):
+        nums = re.sub(r"\D", "", valor)[:11]
+        cpf = ""
+        if len(nums) >= 1:
+            cpf = nums[:3]
+        if len(nums) >= 4:
+            cpf = nums[:3] + "." + nums[3:6]
+        if len(nums) >= 7:
+            cpf = nums[:3] + "." + nums[3:6] + "." + nums[6:9]
+        if len(nums) >= 10:
+            cpf = nums[:3] + "." + nums[3:6] + "." + nums[6:9] + "-" + nums[9:]                                                                                                                            
+    
+        return cpf
+    def formatar_numero(valor):
+        nums = re.sub(r"\D", "", valor)[:11]
+        numero = ""
+        if len(nums) >= 1:
+            numero = "(" + nums[:2]
+        if len(nums) >= 3:
+            numero = "(" + nums[:2] + ") " + nums[2:7]
+        if len(nums) >= 8:
+            numero = "(" + nums[:2] + ") " + nums[2:7] + "-" + nums[7:]
+
+        return numero
+    def aplicar_mascara(entry, formatador):
+        valor = entry.get()
+        novo_valor = formatador(valor)
+
+        entry.delete(0, "end")
+        entry.insert(0,novo_valor)
+
+    validar_cmd = app.register(apenas_numero)
+    
     frame2=ctk.CTkFrame(app)
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +94,9 @@ def criar_telacadastro(app,mudar_tela):
                                 bg_color="black",
                                 placeholder_text="00 123456789")
     entrada_numero.place(x=240,y=185)
-
+    
+    entrada_numero.bind("<KeyRelease>", lambda e:aplicar_mascara(entrada_numero, formatar_numero))
+    
     texto_email=ctk.CTkLabel(frame2,
                              text="E-MAIL",
                              bg_color="black",
@@ -97,6 +137,8 @@ def criar_telacadastro(app,mudar_tela):
 
     entrada_cpf.place(x=240,y=385)
 
+    entrada_cpf.bind("<KeyRelease>", lambda e: aplicar_mascara(entrada_cpf, formatar_cpf))
+    
     texto_senha=ctk.CTkLabel(frame2,
                            text="SENHA",
                            bg_color="black",
