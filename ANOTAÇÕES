@@ -6,10 +6,10 @@ FUNÇÕES PARA A TELA DE LOGIN
 
 FUNÇÕES PARA A TELA DE CADASTRO
 
--verificar se todos os campos foram prenchidos
--verificar se o email e valido
--verificar se o cpf é valido
--verificar se o nome dado ja existe no banco de dados
+-verificar se todos os campos foram prenchidos✅
+-verificar se o email e valido✅
+-verificar se o cpf é valido✅
+-verificar se o nome dado ja existe no banco de dados✅
 -salvar todas as informções do usuario no banco de dados✅
 
 
