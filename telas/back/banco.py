@@ -21,9 +21,11 @@ def iniciar():
             CREATE TABLE IF NOT EXISTS contratos (
                 num INTEGER PRIMARY KEY AUTOINCREMENT,
                 cpf TEXT,
+                carro TEXT,
                 placa TEXT,
                 dataInicio DATE,
-                dataTermino DATE
+                dataTermino DATE,
+                valor REAL
             )''')
             conexao.commit()
 
@@ -75,6 +77,9 @@ def novoUsuario(usuario):
     except Exception as e:
         messagebox.showerror('Erro', 'Erro ao cadastrar usuário.\n'
               f'{e}\033[m')
+
+def novoContrato(contrato):
+    return
 
 
 def listar(tabela):
