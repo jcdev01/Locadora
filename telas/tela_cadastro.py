@@ -191,8 +191,10 @@ def criar_telacadastro(app,mudar_tela):
             return
 
         else:
+            cpfLimpo = re.sub(r"\D","",entrada_cpf.get())
+
             usuario = {
-                "cpf":entrada_cpf.get(),
+                "cpf":cpfLimpo,
                 "senha":entrada_senha_cadastro.get(),
                 "email":entrada_email.get(),
                 "nome":entrada_nome.get(),
@@ -219,7 +221,7 @@ def criar_telacadastro(app,mudar_tela):
     butao_criarconta.place(x=240,y=538)
 
     def voltar():
-        from Locadora.telas.tela_login import criar_telalogin
+        from telas.tela_login import criar_telalogin
         mudar_tela(criar_telalogin)
 
 
