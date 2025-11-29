@@ -21,9 +21,21 @@ def iniciar():
             CREATE TABLE IF NOT EXISTS contratos (
                 num INTEGER PRIMARY KEY AUTOINCREMENT,
                 cpf TEXT,
+                carro TEXT,
                 placa TEXT,
                 dataInicio DATE,
-                dataTermino DATE
+                dataTermino DATE,
+                valor REAL,
+                formaPagamento TEXT
+            )''')
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS carros (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                marca TEXT,
+                modelo TEXT,
+                ano INTEGER,
+                placa TEXT,
+                diaria REAL
             )''')
             conexao.commit()
 
@@ -76,6 +88,9 @@ def novoUsuario(usuario):
         messagebox.showerror('Erro', 'Erro ao cadastrar usuário.\n'
               f'{e}\033[m')
 
+def novoContrato(contrato):
+    return
+
 
 def listar(tabela):
     try:
@@ -99,3 +114,4 @@ def cpf_existe(cpf):
 
 iniciar()
 listar('usuarios')
+listar('contratos')

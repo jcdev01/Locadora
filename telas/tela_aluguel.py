@@ -1,8 +1,9 @@
 #tela pra alugar os carros
+
 import customtkinter as ctk
 from PIL import Image
 import os
-
+from datetime import datetime
 
 def criar_telaaluguel(app, mudar_tela,):
 
@@ -23,7 +24,7 @@ def criar_telaaluguel(app, mudar_tela,):
 
 
     def voltar():
-        from Locadora.telas.tela_dashboard import criar_teladashboard
+        from telas.tela_dashboard import criar_teladashboard
         mudar_tela(criar_teladashboard)
 
 
@@ -123,19 +124,43 @@ def criar_telaaluguel(app, mudar_tela,):
     )
     pagamento_combo.place(x=50, y=base_y + 340)
 
+    def dataValida(data_str):
+        try:
+            datetime.strptime(data_str, "%d/%m/%Y")
+            return True
+
+        except ValueError:
+            return False
+
+    def devolucaoCerta(retirada, devolucao):
+        dataR = datetime.strptime(retirada, "%d/%m/%Y")
+        dataD = datetime.strptime(devolucao, "%d/%m/%Y")
+
+        if dataD >= dataR:
+            return True
+
+        else:
+            return False
+
     # Gerar contrato
     def gerar_contrato():
 
         data_r=data_retirada.get()
         data_d=data_devolucao.get()
 
-        if not data_r or not data_d:
-            erro_label.configure(text="informe a data de retirada e devolução")
-        else:
-            print("=== CONTRATO GERADO ===")
-            print("Retirada:", data_retirada.get())
-            print("Devolução:", data_devolucao.get())
-            print("Pagamento:", pagamento_combo.get())
+        if not dataValida(data_d) or not dataValida(data_r):
+            erro_label.configure(text='Data inválida\nFormato: (dd/mm/aaaa)')
+            return
+
+        if not devolucaoCerta(data_r, data_d):
+            erro_label.configure(text='Data inválida\nDevolução precisa ser depois da retirada')
+            return
+
+        print("=== CONTRATO GERADO ===")
+        print("Retirada:", data_r)
+        print("Devolução:", data_d)
+        print("Pagamento:", pagamento_combo.get())
+        erro_label.configure(text='')
 
     botao_contrato = ctk.CTkButton(
         frame,
