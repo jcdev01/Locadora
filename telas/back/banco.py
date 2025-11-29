@@ -25,7 +25,17 @@ def iniciar():
                 placa TEXT,
                 dataInicio DATE,
                 dataTermino DATE,
-                valor REAL
+                valor REAL,
+                formaPagamento TEXT
+            )''')
+            cursor.execute('''
+            CREATE TABLE IF NOT EXISTS carros (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                marca TEXT,
+                modelo TEXT,
+                ano INTEGER,
+                placa TEXT,
+                diaria REAL
             )''')
             conexao.commit()
 
@@ -104,3 +114,4 @@ def cpf_existe(cpf):
 
 iniciar()
 listar('usuarios')
+listar('contratos')
