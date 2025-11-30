@@ -2,9 +2,9 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
-from telas.back.banco import contratosSalvos
-from session import usuarioLogado
-from telas.back.banco import escolherContrato
+from Locadora.telas.back.banco import contratosSalvos
+from Locadora.session import usuarioLogado
+from Locadora.telas.back.banco import escolherContrato
 
 
 
@@ -45,7 +45,7 @@ def criar_telacontrato(app,mudar_tela):
             label_carro.configure(text=f"CARRO:\n{contrato.carro}")
             label_datainicio.configure(text=f"DATA EMISSÃO:\n{contrato.dataInicio}")
             label_datafinal.configure(text=f"DATA DEVOLUÇÃO:\n{contrato.dataTermino}")
-            label_valor.configure(text=f"VALOR TOTAL:\n{contrato.valor}")
+            label_valor.configure(text=f"VALOR TOTAL:\nR${contrato.valor}")
             label_forma_de_pagamento.configure(text=f"FORMA DE PAGEMENTO:\n{contrato.formaPagamento}")
         else:
             print("contrato nao encontrado")
@@ -90,7 +90,7 @@ def criar_telacontrato(app,mudar_tela):
 
 
     def voltar():
-      from telas.tela_dashboard import criar_teladashboard
+      from Locadora.telas.tela_dashboard import criar_teladashboard
       mudar_tela(criar_teladashboard)
 
 

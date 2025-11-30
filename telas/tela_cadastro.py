@@ -2,9 +2,9 @@
 import customtkinter as ctk
 from PIL import  Image
 import os
-from telas.back import banco
-from telas.tela_dashboard import criar_teladashboard
-from telas.back.banco import cpf_existe
+from Locadora.telas.back import banco
+from Locadora.telas.tela_dashboard import criar_teladashboard
+from Locadora.telas.back.banco import cpf_existe
 import re
 
 
@@ -219,7 +219,7 @@ def criar_telacadastro(app,mudar_tela):
     butao_criarconta.place(x=240,y=538)
 
     def voltar():
-        from telas.tela_login import criar_telalogin
+        from Locadora.telas.tela_login import criar_telalogin
         mudar_tela(criar_telalogin)
 
 

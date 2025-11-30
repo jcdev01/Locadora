@@ -5,10 +5,10 @@ import customtkinter as ctk
 from PIL import Image
 import os
 from datetime import datetime
-from telas.back.banco import novoContrato
-from telas.back.classes import *
-import session as session
-from telas.back.classes import Contrato
+from Locadora.telas.back.banco import novoContrato
+from Locadora.telas.back.classes import *
+import Locadora.session as session
+from Locadora.telas.back.classes import Contrato
 
 
 def criar_telaaluguel(app, mudar_tela,):
@@ -30,7 +30,7 @@ def criar_telaaluguel(app, mudar_tela,):
     print(session.carroEscolhido)
 
     def voltar():
-        from telas.tela_dashboard import criar_teladashboard
+        from Locadora.telas.tela_dashboard import criar_teladashboard
         session.carroEscolhido = None
         mudar_tela(criar_teladashboard)
 
@@ -89,26 +89,6 @@ def criar_telaaluguel(app, mudar_tela,):
     )
     data_devolucao.place(x=50, y=base_y + 140)
 
-    # Valor total
-    titulo_valor = ctk.CTkLabel(
-        frame,
-        text="Cálculo do valor total:",
-        text_color="white",
-        font=("Montserrat", 18, "italic", "bold"),
-        bg_color="#3a3d7b"
-    )
-    titulo_valor.place(x=50, y=base_y + 210)
-
-    valor_label = ctk.CTkLabel(
-        frame,
-        text="R$ 0,00",
-        text_color="white",
-        font=("Montserrat", 16, "bold"),
-        fg_color = "#202244",
-        bg_color="#3a3d7b",  
-        corner_radius = 20,
-    )
-    valor_label.place(x=50, y=base_y + 240)
 
     # forma de pagamento
     titulo_pagamento = ctk.CTkLabel(
