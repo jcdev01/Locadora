@@ -1,1 +1,2 @@
 usuarioLogado = None
+carroEscolhido = None

@@ -1,5 +1,4 @@
 class Carro:
-    total = 0
 
     def __init__(self, marca, modelo, ano, placa, diaria):
         self.marca = marca
@@ -7,8 +6,6 @@ class Carro:
         self.ano = ano
         self.placa = placa
         self.diaria = diaria
-
-        Carro.total += 1
 
     def __str__(self):
         return (f'---CARRO---\n'
@@ -20,16 +17,13 @@ class Carro:
 
 
 class Usuario:
-    total = 0
-    
+
     def __init__(self, cpf, senha, email, nome, telefone):
         self.cpf = cpf
         self.senha = senha
         self.email = email
         self.nome = nome
         self.telefone = telefone
-
-        Usuario.total += 1
 
     def __str__(self):
         return (f'---USUÁRIO---\n'
@@ -39,15 +33,13 @@ class Usuario:
                 f'SENHA: {self.senha}\n'
                 f'TELEFONE: {self.telefone}\n')
 
-class Contratos:
-    total = 0
+class Contrato:
 
-    def __init__(self, cpf, placa, dataInicio, dataTermino, valor, formaPagamento):
+    def __init__(self, cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento):
         self.cpf = cpf
+        self.carro = carro
         self.placa = placa
         self.dataInicio = dataInicio
         self.dataTermino = dataTermino
         self.valor = valor
         self.formaPagamento = formaPagamento
-
-        Contratos.total += 1

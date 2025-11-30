@@ -93,7 +93,6 @@ def criar_telalogin(app, mudar_tela):
 
 
         if login(cpf, senha):
-            print("Login realizado com sucesso")
             mudar_tela(criar_teladashboard)
         else:
             erro_label.configure(text="Usuário ou senha incorretos", text_color="red")

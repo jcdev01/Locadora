@@ -4,6 +4,8 @@ import customtkinter as ctk
 from PIL import Image
 import os
 from datetime import datetime
+from telas.back.classes import *
+import session
 
 def criar_telaaluguel(app, mudar_tela,):
 
@@ -21,10 +23,11 @@ def criar_telaaluguel(app, mudar_tela,):
     erro_label=ctk.CTkLabel(frame,text="",text_color="red",font=("Verdana",10,"bold"))
     erro_label.place(x=100,y=100)
 
-
+    print(session.carroEscolhido)
 
     def voltar():
         from telas.tela_dashboard import criar_teladashboard
+        session.carroEscolhido = None
         mudar_tela(criar_teladashboard)
 
 
@@ -155,6 +158,11 @@ def criar_telaaluguel(app, mudar_tela,):
         if not devolucaoCerta(data_r, data_d):
             erro_label.configure(text='Data inválida\nDevolução precisa ser depois da retirada')
             return
+
+        contrato = Contrato(
+            cpf=session.usuarioLogado.cpf,
+
+        )
 
         print("=== CONTRATO GERADO ===")
         print("Retirada:", data_r)

@@ -49,8 +49,6 @@ def iniciar():
               f'{e}\033[m')
 
 def login(login, senha):
-    global usuarioLogado
-
     try:
         with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
@@ -124,14 +122,43 @@ def novoContrato(contrato):
         with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
 
-            cursor.execute('''INSERT INTO contratos (cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento)
+            cursor.execute('''
+            INSERT INTO contratos (cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento)
             VALUES (:cpf, :carro, :placa, :dataInicio, :dataTermino, :valor, :formaPagamento)
             ''', dados)
             conexao.commit()
+
         conexao.close()
+
         print('Contrato criado com sucesso.')
     except Exception as e:
         print(f'\033[31mErro ao salvar o contrato.\n'
+              f'{e}\033[m')
+
+def escolherCarro(placa):
+    try:
+        with sqlite3.connect("telas/back/database.db") as conexao:
+            cursor = conexao.cursor()
+            cursor.execute('''
+            SELECT * FROM carros WHERE placa = ?
+            ''', (placa,))
+
+            carro = cursor.fetchone()
+
+            if carro is None:
+                return
+
+            session.carroEscolhido = Carro(
+                marca=carro[1],
+                modelo=carro[2],
+                ano=carro[3],
+                placa=carro[4],
+                diaria=carro[5],
+            )
+
+
+    except Exception as e:
+        print(f'\033[31mErro ao escolher o carro.\n'
               f'{e}\033[m')
 
 def listar(tabela):

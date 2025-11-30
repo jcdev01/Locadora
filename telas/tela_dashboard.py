@@ -1,9 +1,11 @@
-#tela do dashbord
+#tela do dashboard
 import customtkinter as ctk
 from PIL import Image
 import  os
 from telas.tela_aluguel import criar_telaaluguel
 from telas.back.classes import *
+from telas.back.banco import escolherCarro
+import session
 
 def criar_teladashboard(app, mudar_tela):
     frame4 = ctk.CTkFrame(app, fg_color="black")
@@ -27,7 +29,7 @@ def criar_teladashboard(app, mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar,
+                             command=lambda: (escolherCarro('AAA1111'), alugar()),
                              bg_color="#3a3d7b",
                              )
 
@@ -42,7 +44,7 @@ def criar_teladashboard(app, mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar,
+                             command=lambda: (escolherCarro('BBB2222'), alugar()),
                              bg_color="#3a3d7b")
 
     botao_onix_sedan.place(x=225,y=240)
@@ -56,7 +58,7 @@ def criar_teladashboard(app, mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar,
+                             command=lambda: (escolherCarro('CCC3333'), alugar()),
                              bg_color="#3a3d7b")
 
     botao_mobi.place(x=225,y=390)
@@ -70,7 +72,7 @@ def criar_teladashboard(app, mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar,
+                             command=lambda: (escolherCarro('DDD4444'), alugar()),
                              bg_color="#3a3d7b"
                              )
     botao_kwid.place(x=490,y=85)
@@ -84,7 +86,7 @@ def criar_teladashboard(app, mudar_tela):
                              height=25,
                              border_color="",
                              corner_radius=20,
-                             command=alugar,
+                             command=lambda: (escolherCarro('EEE5555'), alugar()),
                              bg_color="#3a3d7b",
                                 )
     botao_civic.place(x=490,y=240)
@@ -99,7 +101,7 @@ def criar_teladashboard(app, mudar_tela):
                                 border_color="",
                                 corner_radius=20,
                                 bg_color="#3a3d7b",
-                                command=alugar
+                                command=lambda: (escolherCarro('FFF6666'), alugar())
                              )
     botao_tracker.place(x=490,y=390)
 
