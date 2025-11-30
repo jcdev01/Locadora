@@ -2,10 +2,10 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
-from telas.back.banco import contratosSalvos
-from session import usuarioLogado
-from telas.back.banco import escolherContrato
-from main import mudar_tela
+from Locadora.telas.back.banco import contratosSalvos
+from Locadora.session import usuarioLogado
+from Locadora.telas.back.banco import escolherContrato
+
 
 
 def criar_telacontrato(app,mudar_tela):
@@ -90,7 +90,7 @@ def criar_telacontrato(app,mudar_tela):
 
 
     def voltar():
-      from telas.tela_dashboard import criar_teladashboard
+      from Locadora.telas.tela_dashboard import criar_teladashboard
       mudar_tela(criar_teladashboard)
 
 

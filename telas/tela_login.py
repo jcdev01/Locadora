@@ -1,10 +1,10 @@
 import customtkinter as ctk
 from PIL import Image
-from telas.back.banco import login
+from Locadora.telas.back.banco import login
 import os
-from telas.tela_cadastro import criar_telacadastro
-from telas.tela_dashboard import criar_teladashboard
-import session
+from Locadora.telas.tela_cadastro import criar_telacadastro
+from Locadora.telas.tela_dashboard import criar_teladashboard
+import Locadora.session as session
 
 
 # configurações da tela
