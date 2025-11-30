@@ -25,7 +25,7 @@ def criar_teladashboard(app, mudar_tela):
        mudar_tela(criar_telaaluguel)
 
     def contratos():
-        from Locadora.telas.tela_contratos import criar_telacontrato
+        from telas.tela_contratos import criar_telacontrato
         mudar_tela(criar_telacontrato)
 
 
@@ -135,7 +135,7 @@ def criar_teladashboard(app, mudar_tela):
                                font=("Poppins", 16, "bold"))
     label_dados.place(x=59, y=163)
 
-    usuario_nome=ctk.CTkLabel(frame4,text=f"Número:\n{usuario.nome}",
+    usuario_nome=ctk.CTkLabel(frame4,text=f"Nome:\n{usuario.nome}",
                               font=("Poppins",10,"bold"),
                               text_color="white",
                               bg_color="#3a3d7b")
