@@ -1,14 +1,21 @@
 ﻿#conexão com o banco de dados
 import sqlite3
 from tkinter import messagebox
-from telas.back.classes import *
-import session
-from telas.back.classes import Usuario, Carro
 
+from PIL.TiffImagePlugin import DATE_TIME
+
+from Locadora.telas.back.classes import *
+import Locadora.session
+from Locadora.telas.back.classes import Usuario, Carro
+import os
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "database.db")
 
 def iniciar():
     try:
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
 
                 # CRIAÇÃO DAS TABELAS
@@ -52,7 +59,7 @@ def iniciar():
 
 def login(login, senha):
     try:
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''
             SELECT * FROM usuarios 
@@ -65,13 +72,13 @@ def login(login, senha):
                 return False
 
             # LOGIN DEU CERTO
-            session.usuarioLogado = Usuario(
+            Locadora.session.usuarioLogado = Usuario(
                 cpf=usuario[1],
                 senha=usuario[2],
                 email=usuario[3],
                 nome=usuario[4],
                 telefone=usuario[5])
-            print('Login realizado com sucesso!\n', session.usuarioLogado)
+            print('Login realizado com sucesso!\n', Locadora.session.usuarioLogado)
             return True
 
     except Exception as e:
@@ -82,7 +89,7 @@ def login(login, senha):
 
 def novoUsuario(usuario):
     try:
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''INSERT INTO usuarios (cpf, senha, email, nome, telefone)
             VALUES (:cpf, :senha, :email, :nome, :telefone)
@@ -102,7 +109,7 @@ def novoCarro(carro):
     try:
         dados = carro.__dict__
 
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''INSERT INTO carros (marca, modelo, ano, placa, diaria)
             VALUES (:marca, :modelo, :ano, :placa, :diaria)
@@ -121,7 +128,7 @@ def novoContrato(contrato):
     try:
         dados = contrato.__dict__
 
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
 
             cursor.execute('''
@@ -140,7 +147,7 @@ def novoContrato(contrato):
 
 def escolherCarro(placa):
     try:
-        with sqlite3.connect("telas/back/database.db") as conexao:
+        with sqlite3.connect(DB_PATH) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''
             SELECT * FROM carros WHERE placa = ?
@@ -151,7 +158,7 @@ def escolherCarro(placa):
             if carro is None:
                 return
 
-            session.carroEscolhido = Carro(
+            Locadora.session.carroEscolhido = Carro(
                 marca=carro[1],
                 modelo=carro[2],
                 ano=carro[3],
@@ -166,7 +173,7 @@ def escolherCarro(placa):
 
 def escolherContrato(num):
     try:
-        with sqlite3.connect("telas/back/database.db") as conexao:
+        with sqlite3.connect(DB_PATH) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''
             SELECT * FROM contratos WHERE num = ?
@@ -203,7 +210,7 @@ def contratosSalvos():
     '''
 
     try:
-        with sqlite3.connect("telas/back/database.db") as conexao:
+        with sqlite3.connect(DB_PATH) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''
             SELECT num FROM contratos
@@ -224,7 +231,7 @@ def contratosSalvos():
 def listar(tabela):
     try:
         print(f'---------------{tabela}---------------')
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
+        with (sqlite3.connect(DB_PATH)) as conexao:
             cursor = conexao.cursor()
             cursor.execute(f'''SELECT * FROM {tabela}''')
             for linha in cursor.fetchall():
@@ -237,7 +244,7 @@ def listar(tabela):
 
         
 def cpf_existe(cpf):
-    with sqlite3.connect("telas/back/database.db") as conexao:
+    with sqlite3.connect(DB_PATH) as conexao:
         cursor = conexao.cursor()
         cursor.execute("SELECT 1 FROM usuarios WHERE cpf = ?", (cpf,))
         resultado = cursor.fetchone()

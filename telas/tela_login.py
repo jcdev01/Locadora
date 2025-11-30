@@ -1,15 +1,16 @@
 import customtkinter as ctk
 from PIL import Image
-from telas.back.banco import login
+from Locadora.telas.back.banco import login
 import os
 from telas.tela_cadastro import criar_telacadastro
 from telas.tela_dashboard import criar_teladashboard
 
 
+
 # configurações da tela
 def criar_telalogin(app, mudar_tela):
     frame1 = ctk.CTkFrame(app,fg_color="black")
-
+    import Locadora.session as session
     # card da tela
     card = ctk.CTkFrame(frame1,
                         corner_radius=15,
@@ -84,24 +85,29 @@ def criar_telalogin(app, mudar_tela):
 
     erro_label.place(x=50,y=250)
     # função de login
+    # função de login
     def tenta_login():
         cpf = entrada_login.get()
         senha = entrada_senha.get()
-        if not entrada_login.get() or  not entrada_senha.get():
-            erro_label.configure(text="preencha todas os campos",text_color="red")
-            return
 
+        usuario = login(cpf, senha)
 
-        if login(cpf, senha):
+        if usuario:
+            session.usuarioLogado = usuario
             mudar_tela(criar_teladashboard)
         else:
-            erro_label.configure(text="Usuário ou senha incorretos", text_color="red")
+            erro_label.configure(text="Usuário ou senha incorretos")
 
     # botão entrar
-    butao_entrar = ctk.CTkButton(card, text="Entrar", width=120, height=35,
-                                 corner_radius=30, fg_color="#202244", command=tenta_login,
-
-                                 )
+    butao_entrar = ctk.CTkButton(
+        card,
+        text="Entrar",
+        width=120,
+        height=35,
+        corner_radius=30,
+        fg_color="#202244",
+        command=tenta_login
+    )
     butao_entrar.place(x=140, y=370)
 
     return frame1

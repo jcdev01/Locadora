@@ -24,6 +24,11 @@ def criar_teladashboard(app, mudar_tela):
     def alugar():
        mudar_tela(criar_telaaluguel)
 
+    def contratos():
+        from Locadora.telas.tela_contratos import criar_telacontrato
+        mudar_tela(criar_telacontrato)
+
+
 
     botao_onix=ctk.CTkButton(frame4,
                              text="reservar",
@@ -111,13 +116,16 @@ def criar_teladashboard(app, mudar_tela):
 
 
 
+
+
     botao_reservars=ctk.CTkButton(frame4,
-                                  text="ver minhas reservas",
+                                  text="ver meus contratos",
                                   height=30,
                                   width=135,
                                   fg_color="#3a3d7b",
                                   bg_color="#4b4f9d",
-                                  corner_radius=50
+                                  corner_radius=50,
+                                  command=contratos
                                   )
     botao_reservars.place(x=40,y=433)
 
