@@ -14,6 +14,15 @@ class Carro:
                 f'ANO: {self.ano}\n'
                 f'PLACA: {self.placa}\n'
                 f'DIARIA: R$ {self.diaria:.2f}\n')
+    def __int__(self,onix_retro,onix_sedan,mobi,kwid,civic,tracker):
+        self.onix_retro=onix_retro
+        self.onix_sedan=onix_sedan
+        self.mobi=mobi
+        self.civic=civic
+        self.kwid=kwid
+        self.tracker=tracker
+
+
 
 
 class Usuario:

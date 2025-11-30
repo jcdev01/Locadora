@@ -5,9 +5,11 @@ import customtkinter as ctk
 from PIL import Image
 import os
 from datetime import datetime
-from telas.back.banco import novoContrato
-from telas.back.classes import *
-import session
+from Locadora.telas.back.banco import novoContrato
+from Locadora.telas.back.classes import *
+import Locadora.session
+from Locadora.telas.back.classes import Contrato
+
 
 def criar_telaaluguel(app, mudar_tela,):
 
@@ -25,11 +27,11 @@ def criar_telaaluguel(app, mudar_tela,):
     erro_label=ctk.CTkLabel(frame,text="",text_color="red",font=("Verdana",10,"bold"))
     erro_label.place(x=100,y=100)
 
-    print(session.carroEscolhido)
+    print(Locadora.session.carroEscolhido)
 
     def voltar():
-        from telas.tela_dashboard import criar_teladashboard
-        session.carroEscolhido = None
+        from Locadora.telas.tela_dashboard import criar_teladashboard
+        Locadora.session.carroEscolhido = None
         mudar_tela(criar_teladashboard)
 
 
@@ -157,7 +159,7 @@ def criar_telaaluguel(app, mudar_tela,):
 
                 diferenca = dataD - dataR
                 dias = diferenca.days + 1
-                diaria = session.carroEscolhido.diaria
+                diaria = Locadora.session.carroEscolhido.diaria
 
                 valor_label.configure(text=f'R$ {dias*diaria:.2f}')
 
@@ -186,15 +188,15 @@ def criar_telaaluguel(app, mudar_tela,):
 
         diferenca = dataD - dataR
         dias = diferenca.days + 1
-        diaria = session.carroEscolhido.diaria
+        diaria = Locadora.session.carroEscolhido.diaria
 
         retiradaSql = dataR.strftime("%Y-%m-%d")
         devolucaoSql = dataD.strftime("%Y-%m-%d")
 
         contrato = Contrato(
-            cpf=session.usuarioLogado.cpf,
-            carro=session.carroEscolhido.modelo,
-            placa=session.carroEscolhido.placa,
+            cpf=Locadora.session.usuarioLogado.cpf,
+            carro=Locadora.session.carroEscolhido.modelo,
+            placa=Locadora.session.carroEscolhido.placa,
             dataInicio=retiradaSql,
             dataTermino=devolucaoSql,
             valor=diaria*dias,

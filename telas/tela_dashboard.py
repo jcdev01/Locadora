@@ -5,10 +5,13 @@ import  os
 from telas.tela_aluguel import criar_telaaluguel
 from telas.back.classes import *
 from telas.back.banco import escolherCarro
-import session
+import Locadora.session
+from Locadora.telas.back.classes import Carro
+
 
 def criar_teladashboard(app, mudar_tela):
     frame4 = ctk.CTkFrame(app, fg_color="black")
+    usuario=Locadora.session.usuarioLogado
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     img_path_fundo = os.path.join(BASE_DIR, "..", "imagens", "fundo_dashboard.png")
@@ -106,7 +109,8 @@ def criar_teladashboard(app, mudar_tela):
     botao_tracker.place(x=490,y=390)
 
 
-
+    def selecionar_carro():
+        Locadora.session.carroEscolhido=Carro
 
 
 
@@ -125,6 +129,36 @@ def criar_teladashboard(app, mudar_tela):
                                fg_color="#4b4f9d",
                                font=("Poppins", 16, "bold"))
     label_dados.place(x=59, y=163)
+
+    usuario_nome=ctk.CTkLabel(frame4,text=f"Número:\n{usuario.nome}",
+                              font=("Poppins",10,"bold"),
+                              text_color="white",
+                              bg_color="#3a3d7b")
+    usuario_nome.place(x=40,y=210)
+
+    usuario_numero=ctk.CTkLabel(frame4,text=f"Número:\n{usuario.telefone}",
+                                font=("Poppins", 10, "bold"),
+                                text_color="white",
+                                bg_color="#3a3d7b")
+    usuario_numero.place(x=40,y=250)
+
+    usuario_cpf=ctk.CTkLabel(frame4,text=f"CPF:\n{usuario.cpf}",
+                                font=("Poppins", 10, "bold"),
+                                text_color="white",
+                                bg_color="#3a3d7b")
+    usuario_cpf.place(x=40,y=290)
+
+    usuario_email=ctk.CTkLabel(frame4,text=f"Email:\n{usuario.email}",
+                               font=("Poppins", 10, "bold"),
+                               text_color="white",
+                               bg_color="#3a3d7b"
+                               )
+    usuario_email.place(x=40,y=330)
+
+
+
+
+
 
     return frame4
 
