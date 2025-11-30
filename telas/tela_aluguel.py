@@ -145,6 +145,27 @@ def criar_telaaluguel(app, mudar_tela,):
         else:
             return False
 
+    def calcularTotal(retirada, devolucao):
+
+        if dataValida(retirada) and dataValida(devolucao):
+            if devolucaoCerta(retirada, devolucao):
+
+                dataR = datetime.strptime(retirada, "%d/%m/%Y")
+                dataD = datetime.strptime(devolucao, "%d/%m/%Y")
+
+                diferenca = dataD - dataR
+                dias = diferenca.days + 1
+                diaria = session.carroEscolhido.diaria
+
+                valor_label.configure(text=f'R$ {dias*diaria:.2f}')
+
+
+
+    data_retirada.bind('<FocusOut>',
+                       lambda e: calcularTotal(data_retirada.get(), data_devolucao.get()))
+    data_devolucao.bind('<FocusOut>',
+                        lambda e: calcularTotal(data_retirada.get(), data_devolucao.get()))
+
     # Gerar contrato
     def gerar_contrato():
 
@@ -158,11 +179,6 @@ def criar_telaaluguel(app, mudar_tela,):
         if not devolucaoCerta(data_r, data_d):
             erro_label.configure(text='Data inválida\nDevolução precisa ser depois da retirada')
             return
-
-        contrato = Contrato(
-            cpf=session.usuarioLogado.cpf,
-
-        )
 
         print("=== CONTRATO GERADO ===")
         print("Retirada:", data_r)
