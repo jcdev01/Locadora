@@ -5,13 +5,13 @@ import  os
 from telas.tela_aluguel import criar_telaaluguel
 from telas.back.classes import *
 from telas.back.banco import escolherCarro
-import Locadora.session
-from Locadora.telas.back.classes import Carro
+import session
+from telas.back.classes import Carro
 
 
 def criar_teladashboard(app, mudar_tela):
     frame4 = ctk.CTkFrame(app, fg_color="black")
-    usuario=Locadora.session.usuarioLogado
+    usuario=session.usuarioLogado
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     img_path_fundo = os.path.join(BASE_DIR, "..", "imagens", "fundo_dashboard.png")

@@ -1,9 +1,9 @@
 ﻿#conexão com o banco de dados
 import sqlite3
 from tkinter import messagebox
-from Locadora.telas.back.classes import *
-import Locadora.session
-from Locadora.telas.back.classes import Usuario, Carro
+from telas.back.classes import *
+import session
+from telas.back.classes import Usuario, Carro
 
 
 def iniciar():
@@ -65,13 +65,13 @@ def login(login, senha):
                 return False
 
             # LOGIN DEU CERTO
-            Locadora.session.usuarioLogado = Usuario(
+            session.usuarioLogado = Usuario(
                 cpf=usuario[1],
                 senha=usuario[2],
                 email=usuario[3],
                 nome=usuario[4],
                 telefone=usuario[5])
-            print('Login realizado com sucesso!\n', Locadora.session.usuarioLogado)
+            print('Login realizado com sucesso!\n', session.usuarioLogado)
             return True
 
     except Exception as e:
@@ -151,7 +151,7 @@ def escolherCarro(placa):
             if carro is None:
                 return
 
-            Locadora.session.carroEscolhido = Carro(
+            session.carroEscolhido = Carro(
                 marca=carro[1],
                 modelo=carro[2],
                 ano=carro[3],
