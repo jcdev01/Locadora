@@ -51,7 +51,7 @@ def criar_telalogin(app, mudar_tela):
 
     # entradas
     entrada_login = ctk.CTkEntry(card,
-                                   placeholder_text="Login",
+                                   placeholder_text="Login (cpf)",
                                    text_color="white",
                                    width=250,
                                    height=40,

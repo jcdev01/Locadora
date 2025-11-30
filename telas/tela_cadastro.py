@@ -55,7 +55,10 @@ def criar_telacadastro(app,mudar_tela):
     fundolabel=ctk.CTkLabel(frame2,image=fundo,text="",)
     fundolabel.place(x=0,y=0)
 
-    texto_nome=ctk.CTkLabel(frame2,text="NOME COMPLETO",bg_color="black",text_color="white",font=("Montserrat",12,"bold"))
+    texto_nome=ctk.CTkLabel(frame2,text="NOME COMPLETO"
+                            ,bg_color="black"
+                            ,text_color="white"
+                            ,font=("Montserrat",12,"bold"))
     texto_nome.place(x=250,y=50)
 
 
