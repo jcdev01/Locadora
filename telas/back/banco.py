@@ -4,9 +4,9 @@ from tkinter import messagebox
 
 from PIL.TiffImagePlugin import DATE_TIME
 
-from Locadora.telas.back.classes import *
-import Locadora.session as session
-from Locadora.telas.back.classes import Usuario, Carro
+from telas.back.classes import *
+import session as session
+from telas.back.classes import Usuario, Carro
 import os
 
 
