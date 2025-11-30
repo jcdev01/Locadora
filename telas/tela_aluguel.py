@@ -174,6 +174,4 @@ def criar_telaaluguel(app, mudar_tela,):
     )
     botao_contrato.place(x = 280, y = base_y + 330)
 
-
-
     return frame

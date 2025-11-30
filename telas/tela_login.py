@@ -5,6 +5,7 @@ import os
 from telas.tela_cadastro import criar_telacadastro
 from telas.tela_dashboard import criar_teladashboard
 
+
 # configurações da tela
 def criar_telalogin(app, mudar_tela):
     frame1 = ctk.CTkFrame(app,fg_color="black")
@@ -84,14 +85,14 @@ def criar_telalogin(app, mudar_tela):
     erro_label.place(x=50,y=250)
     # função de login
     def tenta_login():
-        usuario = entrada_login.get()
+        cpf = entrada_login.get()
         senha = entrada_senha.get()
         if not entrada_login.get() or  not entrada_senha.get():
             erro_label.configure(text="preencha todas os campos",text_color="red")
             return
 
 
-        if login(usuario, senha):
+        if login(cpf, senha):
             print("Login realizado com sucesso")
             mudar_tela(criar_teladashboard)
         else:

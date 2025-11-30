@@ -1,6 +1,8 @@
 ﻿#conexão com o banco de dados
 import sqlite3
 from tkinter import messagebox
+from telas.back.classes import *
+import session
 
 def iniciar():
     try:
@@ -8,7 +10,7 @@ def iniciar():
             cursor = conexao.cursor()
 
                 # CRIAÇÃO DAS TABELAS
-            cursor.execute('''
+            cursor.executescript('''
             CREATE TABLE IF NOT EXISTS usuarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 cpf TEXT,
@@ -16,8 +18,8 @@ def iniciar():
                 email TEXT,
                 nome TEXT,
                 telefone TEXT
-            )''')
-            cursor.execute('''
+            );
+
             CREATE TABLE IF NOT EXISTS contratos (
                 num INTEGER PRIMARY KEY AUTOINCREMENT,
                 cpf TEXT,
@@ -27,8 +29,8 @@ def iniciar():
                 dataTermino DATE,
                 valor REAL,
                 formaPagamento TEXT
-            )''')
-            cursor.execute('''
+            );
+
             CREATE TABLE IF NOT EXISTS carros (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 marca TEXT,
@@ -36,7 +38,8 @@ def iniciar():
                 ano INTEGER,
                 placa TEXT,
                 diaria REAL
-            )''')
+            );
+            ''')
             conexao.commit()
 
         print('Banco de dados criado com sucesso.')
@@ -46,29 +49,35 @@ def iniciar():
               f'{e}\033[m')
 
 def login(login, senha):
-        try:
-            with (sqlite3.connect("telas/back/database.db")) as conexao:
-                cursor = conexao.cursor()
-                cursor.execute('''SELECT cpf, senha, nome FROM usuarios''')
+    global usuarioLogado
 
-                for usuario in cursor.fetchall():
-                    if usuario[0] == login:
+    try:
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
+            cursor = conexao.cursor()
+            cursor.execute('''
+            SELECT * FROM usuarios 
+            WHERE cpf = ? AND senha = ?''', (login, senha))
+            usuario = cursor.fetchone()
 
-                        if usuario[1] == senha:
-                            # LOGIN DEU CERTO
-                            return True
 
-                        else:
-                            # SENHA INCORRETA
-                            return False
-
-                # USUÁRIO NÃO ENCONTRADO
+            if usuario is None:
+                # SENHA INCORRETA
                 return False
 
-        except Exception as e:
-            messagebox.showerror('Erro', f'Tivemos um erro ao fazer login.\n'
-                                         f'{e}')
-            return None
+            # LOGIN DEU CERTO
+            session.usuarioLogado = Usuario(
+                cpf=usuario[1],
+                senha=usuario[2],
+                email=usuario[3],
+                nome=usuario[4],
+                telefone=usuario[5])
+            print('Login realizado com sucesso!\n', session.usuarioLogado)
+            return True
+
+    except Exception as e:
+        messagebox.showerror('Erro', f'Tivemos um erro ao fazer login.\n'
+                                     f'{e}')
+        return None
 
 
 def novoUsuario(usuario):
@@ -88,12 +97,46 @@ def novoUsuario(usuario):
         messagebox.showerror('Erro', 'Erro ao cadastrar usuário.\n'
               f'{e}\033[m')
 
-def novoContrato(contrato):
-    return
 
+def novoCarro(carro):
+    try:
+        dados = carro.__dict__
+
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
+            cursor = conexao.cursor()
+            cursor.execute('''INSERT INTO carros (marca, modelo, ano, placa, diaria)
+            VALUES (:marca, :modelo, :ano, :placa, :diaria)
+            ''', dados)
+            conexao.commit()
+
+        conexao.close()
+        print('Carro cadastrado com sucesso.')
+
+    except Exception as e:
+        print(f'\033[31mErro ao salvar o carro.\n'
+              f'{e}\033[m')
+
+
+def novoContrato(contrato):
+    try:
+        dados = contrato.__dict__
+
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
+            cursor = conexao.cursor()
+
+            cursor.execute('''INSERT INTO contratos (cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento)
+            VALUES (:cpf, :carro, :placa, :dataInicio, :dataTermino, :valor, :formaPagamento)
+            ''', dados)
+            conexao.commit()
+        conexao.close()
+        print('Contrato criado com sucesso.')
+    except Exception as e:
+        print(f'\033[31mErro ao salvar o contrato.\n'
+              f'{e}\033[m')
 
 def listar(tabela):
     try:
+        print(f'---------------{tabela}---------------')
         with (sqlite3.connect("telas/back/database.db")) as conexao:
             cursor = conexao.cursor()
             cursor.execute(f'''SELECT * FROM {tabela}''')
@@ -104,6 +147,30 @@ def listar(tabela):
 
         print(f'\033[31mErro ao listar {tabela}.'
               f'{e}\033[m')
+
+def dadosUsuario(cpf):
+    # retorna os dados do usuario em forma de objeto através do cpf
+
+    try:
+        with (sqlite3.connect("telas/back/database.db")) as conexao:
+            cursor = conexao.cursor()
+            cursor.execute(f'''SELECT * FROM usuarios WHERE cpf = ?''', (cpf,))
+            usuario = cursor.fetchone()
+
+
+            if usuario:
+                return {'cpf': usuario[1],
+                        'nome': usuario[2],
+                        'telefone': usuario[3],
+                        }
+            else:
+                return None
+
+    except Exception as e:
+        print(f'\033[31mErro ao consultar dados.\n'
+              f'{e}\033[m')
+        return None
+
         
 def cpf_existe(cpf):
     with sqlite3.connect("telas/back/database.db") as conexao:
@@ -113,5 +180,3 @@ def cpf_existe(cpf):
         return resultado is not None
 
 iniciar()
-listar('usuarios')
-listar('contratos')

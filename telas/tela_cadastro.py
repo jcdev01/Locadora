@@ -59,7 +59,7 @@ def criar_telacadastro(app,mudar_tela):
     texto_nome.place(x=250,y=50)
 
 
-    erro_label=ctk.CTkLabel(frame2,text="",text_color="red",bg_color="black")
+    erro_label=ctk.CTkLabel(frame2,text="",text_color="red",bg_color="black", font=("Verdana",10,"bold"))
     erro_label.place(x=15,y=500)
 
 
@@ -168,7 +168,7 @@ def criar_telacadastro(app,mudar_tela):
         cpf=entrada_cpf.get()
 
         if not nome or not cpf or not numero or not senha or not email :
-            erro_label.configure(text_color="red",font=("Verdana",10,"bold"),text="preencha todos os campos corretamente ")
+            erro_label.configure(text="preencha todos os campos corretamente ")
             return
 
         cpf_limpo=re.sub(r"\D","",cpf)
@@ -176,17 +176,12 @@ def criar_telacadastro(app,mudar_tela):
 
         if len(cpf_limpo) !=11 or len(numero_limpo) !=11:
             erro_label.configure(
-                text="cpf ou número não validos",
-                text_color="red",
-                font=("Verdana",10,"bold")
-
+                text="cpf ou número não validos"
             )
 
-
-        elif cpf_existe(cpf):
+        elif cpf_existe(cpf_limpo):
             erro_label.configure(
-                text_color="red",
-                font=("Verdana", 10, "bold"),
+                text='cpf já cadastrado'
             )
             return
 

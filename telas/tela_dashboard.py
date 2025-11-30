@@ -3,9 +3,9 @@ import customtkinter as ctk
 from PIL import Image
 import  os
 from telas.tela_aluguel import criar_telaaluguel
+from telas.back.classes import *
 
-
-def criar_teladashboard(app,mudar_tela):
+def criar_teladashboard(app, mudar_tela):
     frame4 = ctk.CTkFrame(app, fg_color="black")
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
