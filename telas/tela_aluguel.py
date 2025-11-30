@@ -1,9 +1,11 @@
 #tela pra alugar os carros
+import sqlite3
 
 import customtkinter as ctk
 from PIL import Image
 import os
 from datetime import datetime
+from telas.back.banco import novoContrato
 from telas.back.classes import *
 import session
 
@@ -160,7 +162,6 @@ def criar_telaaluguel(app, mudar_tela,):
                 valor_label.configure(text=f'R$ {dias*diaria:.2f}')
 
 
-
     data_retirada.bind('<FocusOut>',
                        lambda e: calcularTotal(data_retirada.get(), data_devolucao.get()))
     data_devolucao.bind('<FocusOut>',
@@ -180,10 +181,27 @@ def criar_telaaluguel(app, mudar_tela,):
             erro_label.configure(text='Data inválida\nDevolução precisa ser depois da retirada')
             return
 
-        print("=== CONTRATO GERADO ===")
-        print("Retirada:", data_r)
-        print("Devolução:", data_d)
-        print("Pagamento:", pagamento_combo.get())
+        dataR = datetime.strptime(data_r, "%d/%m/%Y")
+        dataD = datetime.strptime(data_d, "%d/%m/%Y")
+
+        diferenca = dataD - dataR
+        dias = diferenca.days + 1
+        diaria = session.carroEscolhido.diaria
+
+        retiradaSql = dataR.strftime("%Y-%m-%d")
+        devolucaoSql = dataD.strftime("%Y-%m-%d")
+
+        contrato = Contrato(
+            cpf=session.usuarioLogado.cpf,
+            carro=session.carroEscolhido.modelo,
+            placa=session.carroEscolhido.placa,
+            dataInicio=retiradaSql,
+            dataTermino=devolucaoSql,
+            valor=diaria*dias,
+            formaPagamento=pagamento_combo.get(),
+        )
+        novoContrato(contrato)
+
         erro_label.configure(text='')
 
     botao_contrato = ctk.CTkButton(

@@ -131,6 +131,7 @@ def novoContrato(contrato):
         conexao.close()
 
         print('Contrato criado com sucesso.')
+        print(contrato)
     except Exception as e:
         print(f'\033[31mErro ao salvar o contrato.\n'
               f'{e}\033[m')
@@ -174,29 +175,6 @@ def listar(tabela):
 
         print(f'\033[31mErro ao listar {tabela}.'
               f'{e}\033[m')
-
-def dadosUsuario(cpf):
-    # retorna os dados do usuario em forma de objeto através do cpf
-
-    try:
-        with (sqlite3.connect("telas/back/database.db")) as conexao:
-            cursor = conexao.cursor()
-            cursor.execute(f'''SELECT * FROM usuarios WHERE cpf = ?''', (cpf,))
-            usuario = cursor.fetchone()
-
-
-            if usuario:
-                return {'cpf': usuario[1],
-                        'nome': usuario[2],
-                        'telefone': usuario[3],
-                        }
-            else:
-                return None
-
-    except Exception as e:
-        print(f'\033[31mErro ao consultar dados.\n'
-              f'{e}\033[m')
-        return None
 
         
 def cpf_existe(cpf):

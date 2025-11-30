@@ -43,3 +43,13 @@ class Contrato:
         self.dataTermino = dataTermino
         self.valor = valor
         self.formaPagamento = formaPagamento
+
+    def __str__(self):
+        return (f'---CONTRATO---\n'
+                f'CPF: {self.cpf}\n'
+                f'CARRO: {self.carro}\n'
+                f'PLACA: {self.placa}\n'
+                f'DATA INICIAL: {self.dataInicio}\n'
+                f'DATA FINAL: {self.dataTermino}\n'
+                f'VALOR: {self.valor}\n'
+                f'FORMA PAGAMENTO: {self.formaPagamento}\n')
