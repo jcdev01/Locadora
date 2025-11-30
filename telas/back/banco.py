@@ -164,6 +164,63 @@ def escolherCarro(placa):
         print(f'\033[31mErro ao escolher o carro.\n'
               f'{e}\033[m')
 
+def escolherContrato(num):
+    try:
+        with sqlite3.connect("telas/back/database.db") as conexao:
+            cursor = conexao.cursor()
+            cursor.execute('''
+            SELECT * FROM contratos WHERE num = ?
+            ''', (num,))
+
+            contratoTupla = cursor.fetchone()
+
+            if contratoTupla is None:
+                return
+
+            contrato = Contrato(
+                num=contratoTupla[0],
+                cpf=contratoTupla[1],
+                carro=contratoTupla[2],
+                placa=contratoTupla[3],
+                dataInicio=contratoTupla[4],
+                dataTermino=contratoTupla[5],
+                valor=contratoTupla[6],
+                formaPagamento=contratoTupla[7]
+            )
+
+            return contrato
+
+    except Exception as e:
+        print(f'\033[31mErro ao escolher o contrato.\n'
+              f'{e}\033[m')
+
+def contratosSalvos():
+    '''
+    FUNÇÃO QUE RETORNA TODOS OS NÚMEROS, EM UMA LISTA, DOS CONTRATOS
+    JÁ SALVOS ANTERIORMENTE
+
+    listaNum = contratosSalvos()
+    '''
+
+    try:
+        with sqlite3.connect("telas/back/database.db") as conexao:
+            cursor = conexao.cursor()
+            cursor.execute('''
+            SELECT num FROM contratos
+            ''')
+            numeros = []
+            lista = cursor.fetchall()
+
+            for tupla in lista:
+                numeros.append(tupla[0])
+
+            return numeros
+
+    except Exception as e:
+        print(f'\033[31mErro ao listar os números dos contratos.\n'
+              f'{e}\033[m')
+
+
 def listar(tabela):
     try:
         print(f'---------------{tabela}---------------')

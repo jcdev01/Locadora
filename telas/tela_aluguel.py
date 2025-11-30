@@ -194,6 +194,7 @@ def criar_telaaluguel(app, mudar_tela,):
         devolucaoSql = dataD.strftime("%Y-%m-%d")
 
         contrato = Contrato(
+            num=None,
             cpf=session.usuarioLogado.cpf,
             carro=session.carroEscolhido.modelo,
             placa=session.carroEscolhido.placa,

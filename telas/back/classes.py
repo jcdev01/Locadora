@@ -44,7 +44,8 @@ class Usuario:
 
 class Contrato:
 
-    def __init__(self, cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento):
+    def __init__(self, num, cpf, carro, placa, dataInicio, dataTermino, valor, formaPagamento):
+        self.num = num
         self.cpf = cpf
         self.carro = carro
         self.placa = placa
