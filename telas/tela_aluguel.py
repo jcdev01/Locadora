@@ -5,10 +5,10 @@ import customtkinter as ctk
 from PIL import Image
 import os
 from datetime import datetime
-from Locadora.telas.back.banco import novoContrato
-from Locadora.telas.back.classes import *
-import Locadora.session as session
-from Locadora.telas.back.classes import Contrato
+from telas.back.banco import novoContrato
+from telas.back.classes import *
+import session as session
+from telas.back.classes import Contrato
 
 
 def criar_telaaluguel(app, mudar_tela,):
@@ -30,7 +30,7 @@ def criar_telaaluguel(app, mudar_tela,):
     print(session.carroEscolhido)
 
     def voltar():
-        from Locadora.telas.tela_dashboard import criar_teladashboard
+        from telas.tela_dashboard import criar_teladashboard
         session.carroEscolhido = None
         mudar_tela(criar_teladashboard)
 

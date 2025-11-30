@@ -4,9 +4,9 @@ from tkinter import messagebox
 
 from PIL.TiffImagePlugin import DATE_TIME
 
-from Locadora.telas.back.classes import *
-import Locadora.session as session
-from Locadora.telas.back.classes import Usuario, Carro
+from telas.back.classes import *
+import session as session
+from telas.back.classes import Usuario, Carro
 import os
 
 
@@ -209,7 +209,7 @@ def escolherContrato(num):
         print(f'\033[31mErro ao escolher o contrato.\n'
               f'{e}\033[m')
 
-def contratosSalvos():
+def contratosSalvos(cpf):
     '''
     FUNÇÃO QUE RETORNA TODOS OS NÚMEROS, EM UMA LISTA, DOS CONTRATOS
     JÁ SALVOS ANTERIORMENTE
@@ -221,8 +221,8 @@ def contratosSalvos():
         with sqlite3.connect(DB_PATH) as conexao:
             cursor = conexao.cursor()
             cursor.execute('''
-            SELECT num FROM contratos
-            ''')
+            SELECT num FROM contratos WHERE cpf = ?
+            ''', (cpf,))
             numeros = []
             lista = cursor.fetchall()
 
