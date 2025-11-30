@@ -4,9 +4,9 @@ from tkinter import messagebox
 
 from PIL.TiffImagePlugin import DATE_TIME
 
-from telas.back.classes import *
-import session
-from telas.back.classes import Usuario, Carro
+from Locadora.telas.back.classes import *
+import Locadora.session
+from Locadora.telas.back.classes import Usuario, Carro
 import os
 
 
@@ -72,13 +72,13 @@ def login(login, senha):
                 return False
 
             # LOGIN DEU CERTO
-            session.usuarioLogado = Usuario(
+            Locadora.session.usuarioLogado = Usuario(
                 cpf=usuario[1],
                 senha=usuario[2],
                 email=usuario[3],
                 nome=usuario[4],
                 telefone=usuario[5])
-            print('Login realizado com sucesso!\n', session.usuarioLogado)
+            print('Login realizado com sucesso!\n', Locadora.session.usuarioLogado)
             return True
 
     except Exception as e:
@@ -158,7 +158,7 @@ def escolherCarro(placa):
             if carro is None:
                 return
 
-            session.carroEscolhido = Carro(
+            Locadora.session.carroEscolhido = Carro(
                 marca=carro[1],
                 modelo=carro[2],
                 ano=carro[3],
