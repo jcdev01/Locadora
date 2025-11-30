@@ -205,6 +205,12 @@ def criar_telaaluguel(app, mudar_tela,):
         novoContrato(contrato)
 
         erro_label.configure(text='')
+        aprovado_label.configure(text="contrato feito com sucesso")
+
+    aprovado_label=ctk.CTkLabel(frame,text="",text_color="#00bf63",font=("Verdana",12,"bold"))
+    aprovado_label.place(x=280,y=400)
+
+
 
     botao_contrato = ctk.CTkButton(
         frame,

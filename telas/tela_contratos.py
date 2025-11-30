@@ -2,6 +2,8 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
+from Locadora.telas.back.banco import pegar_contratos_usuario
+from Locadora.session import usuarioLogado
 
 frame5=ctk.CTk()
 frame5.geometry("800x600")
@@ -23,8 +25,10 @@ texto_titulo=ctk.CTkLabel(frame5,text="CONTRATOS"
 texto_titulo.place(x=60,y=30)
 
 
-
-combo_contratos=ctk.CTkComboBox(frame5,fg_color="#4b4f9d",
+contratos=pegar_contratos_usuario(cpf=usuarioLogado)
+combo_contratos=ctk.CTkComboBox(frame5,
+                                values=contratos,
+                                fg_color="#4b4f9d",
                                 width=250,
                                 corner_radius=30,
                                 bg_color="#3a3d7b",
@@ -33,6 +37,11 @@ combo_contratos=ctk.CTkComboBox(frame5,fg_color="#4b4f9d",
                                 )
 
 combo_contratos.place(x=30,y=100)
+
+
+
+
+
 
 label_datainicio=ctk.CTkLabel(frame5,text="")
 label_datafinal=ctk.CTkLabel(frame5,text="")

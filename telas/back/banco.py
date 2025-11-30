@@ -186,4 +186,6 @@ def cpf_existe(cpf):
         resultado = cursor.fetchone()
         return resultado is not None
 
+
+
 iniciar()
