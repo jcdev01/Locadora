@@ -109,9 +109,6 @@ def criar_teladashboard(app, mudar_tela):
     botao_tracker.place(x=490,y=390)
 
 
-    def selecionar_carro():
-        Locadora.session.carroEscolhido=Carro
-
 
 
     botao_reservars=ctk.CTkButton(frame4,
