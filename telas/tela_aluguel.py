@@ -89,6 +89,26 @@ def criar_telaaluguel(app, mudar_tela,):
     )
     data_devolucao.place(x=50, y=base_y + 140)
 
+    # Valor total
+    titulo_valor = ctk.CTkLabel(
+        frame,
+        text="Cálculo do valor total:",
+        text_color="white",
+        font=("Montserrat", 18, "italic", "bold"),
+        bg_color="#3a3d7b"
+    )
+    titulo_valor.place(x=50, y=base_y + 210)
+
+    valor_label = ctk.CTkLabel(
+        frame,
+        text="R$ 0,00",
+        text_color="white",
+        font=("Montserrat", 16, "bold"),
+        fg_color = "#202244",
+        bg_color="#3a3d7b",
+        corner_radius = 20,
+    )
+    valor_label.place(x=50, y=base_y + 240)
 
     # forma de pagamento
     titulo_pagamento = ctk.CTkLabel(

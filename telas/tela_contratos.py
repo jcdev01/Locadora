@@ -45,7 +45,7 @@ def criar_telacontrato(app,mudar_tela):
             label_carro.configure(text=f"CARRO:\n{contrato.carro}")
             label_datainicio.configure(text=f"DATA EMISSÃO:\n{contrato.dataInicio}")
             label_datafinal.configure(text=f"DATA DEVOLUÇÃO:\n{contrato.dataTermino}")
-            label_valor.configure(text=f"VALOR TOTAL:\nR${contrato.valor}")
+            label_valor.configure(text=f"VALOR TOTAL:\nR${contrato.valor:.2f}")
             label_forma_de_pagamento.configure(text=f"FORMA DE PAGEMENTO:\n{contrato.formaPagamento}")
         else:
             print("contrato nao encontrado")
