@@ -2,9 +2,9 @@ import customtkinter as ctk
 from PIL import Image
 import os
 
-from telas.back.banco import contratosSalvos
-from session import usuarioLogado
-from telas.back.banco import escolherContrato
+from Locadora.telas.back.banco import contratosSalvos
+from Locadora.session import usuarioLogado
+from Locadora.telas.back.banco import escolherContrato
 
 
 
@@ -46,7 +46,7 @@ def criar_telacontrato(app,mudar_tela):
             label_datainicio.configure(text=f"DATA EMISSÃO:\n{contrato.dataInicio}")
             label_datafinal.configure(text=f"DATA DEVOLUÇÃO:\n{contrato.dataTermino}")
             label_valor.configure(text=f"VALOR TOTAL:\nR${contrato.valor:.2f}")
-            label_forma_de_pagamento.configure(text=f"FORMA DE PAGEMENTO:\n{contrato.formaPagamento}")
+            label_forma_de_pagamento.configure(text=f"FORMA DE PAGAMENTO:\n{contrato.formaPagamento}")
         else:
             print("contrato nao encontrado")
 

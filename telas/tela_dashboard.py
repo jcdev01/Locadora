@@ -2,11 +2,11 @@
 import customtkinter as ctk
 from PIL import Image
 import  os
-from telas.tela_aluguel import criar_telaaluguel
-from telas.back.classes import *
-from telas.back.banco import escolherCarro
-import session as session
-from telas.back.classes import Carro
+from Locadora.telas.tela_aluguel import criar_telaaluguel
+from Locadora.telas.back.classes import *
+from Locadora.telas.back.banco import escolherCarro
+import Locadora.session as session
+from Locadora.telas.back.classes import Carro
 
 
 def criar_teladashboard(app, mudar_tela):
@@ -25,7 +25,7 @@ def criar_teladashboard(app, mudar_tela):
        mudar_tela(criar_telaaluguel)
 
     def contratos():
-        from telas.tela_contratos import criar_telacontrato
+        from Locadora.telas.tela_contratos import criar_telacontrato
         mudar_tela(criar_telacontrato)
 
 
